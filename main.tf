@@ -43,7 +43,7 @@ resource "datadog_dashboard" "concourse" {
 
       request {
         display_type = "line"
-        q            = "avg:${var.concourse_datadog_prefix}.worker_containers{$worker} by {worker}"
+        q            = "avg:${var.concourse_datadog_prefix}.worker_containers{$environment} by {worker}"
 
         style {
           line_type  = local.request.style.line_type
