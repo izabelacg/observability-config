@@ -34,9 +34,9 @@ resource "datadog_dashboard" "concourse" {
         q            = "avg:${var.concourse_datadog_prefix}.worker_containers{*} by {worker}"
 
         style {
-          line_type  = "solid"
-          line_width = "normal"
-          palette    = "dog_classic"
+          line_type  = local.request.style.line_type
+          line_width = local.request.style.line_width
+          palette    = local.request.style.palette
         }
       }
 
@@ -44,6 +44,16 @@ resource "datadog_dashboard" "concourse" {
         include_zero = false
         max          = "256"
       }
+    }
+  }
+}
+
+locals {
+  request = {
+    style = {
+      line_type  = "solid"
+      line_width = "normal"
+      palette    = "dog_classic"
     }
   }
 }
