@@ -17,6 +17,18 @@ resource "datadog_dashboard" "concourse" {
   notify_list  = []
   title        = "Concourse Dashboard"
 
+  template_variable {
+    default = "*"
+    name    = "environment"
+    prefix  = "environment"
+  }
+
+  template_variable {
+    default = "*"
+    name    = "worker"
+    prefix  = var.concourse_worker_tag_key
+  }
+
   widget {
 
     timeseries_definition {
@@ -31,7 +43,7 @@ resource "datadog_dashboard" "concourse" {
 
       request {
         display_type = "line"
-        q            = "avg:${var.concourse_datadog_prefix}.worker_containers{*} by {worker}"
+        q            = "avg:${var.concourse_datadog_prefix}.worker_containers{$worker} by {worker}"
 
         style {
           line_type  = local.request.style.line_type

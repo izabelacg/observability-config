@@ -12,3 +12,9 @@ concourse_datadog_prefix = "concourse_local"
 concourse_metrics_attribute = {
   environment = "ci"
 }
+
+concourse_web_tag_key = "kube_deployment"
+concourse_web_tag_value = "ci-web"
+concourse_worker_tag_key = "kube_stateful_set"
+concourse_worker_tag_value = "ci-worker"
+

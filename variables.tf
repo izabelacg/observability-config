@@ -26,3 +26,19 @@ variable "concourse_datadog_prefix" {
 variable "concourse_metrics_attribute" {
   type = map(string)
 }
+
+variable "concourse_web_tag_key" {
+  type = string
+}
+
+variable "concourse_web_tag_value" {
+  type = string
+}
+
+variable "concourse_worker_tag_key" {
+  type = string
+}
+
+variable "concourse_worker_tag_value" {
+  type = string
+}
