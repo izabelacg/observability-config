@@ -5,40 +5,11 @@
 variable "datadog_api_key" {}
 variable "datadog_app_key" {}
 
-// production / staging / UAT
-variable "environment_name" {
-  type = string
-  default = "development"
-}
-
 //TODO use deployment_target instead? k8s / vms
 // helm / bosh / docker
 variable "deployment_tool" {
   type = string
-  default = "docker"
+  default = "helm"
+  description = ""
 }
 
-variable "concourse_datadog_prefix" {
-  type = string
-  default = "concourse"
-}
-
-variable "concourse_metrics_attribute" {
-  type = map(string)
-}
-
-variable "concourse_web_tag_key" {
-  type = string
-}
-
-variable "concourse_web_tag_value" {
-  type = string
-}
-
-variable "concourse_worker_tag_key" {
-  type = string
-}
-
-variable "concourse_worker_tag_value" {
-  type = string
-}
