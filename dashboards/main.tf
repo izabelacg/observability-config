@@ -680,4 +680,69 @@ resource "datadog_dashboard" "concourse" {
     }
   }
 
+  widget {
+
+    group_definition {
+      layout_type = "ordered"
+      title       = "System Stats"
+
+      widget {
+
+        timeseries_definition {
+          show_legend = false
+          title       = "Worker CPU Usage"
+
+          dynamic "request" {
+            for_each = local.worker_cpu_usage_settings
+
+            content {
+              display_type = "line"
+              q = request.value["query"]
+
+              style {
+                line_type = "solid"
+                line_width = "normal"
+                palette = request.value["palette"]
+              }
+            }
+          }
+
+          yaxis {
+            include_zero = true
+            max          = "auto"
+            min          = "auto"
+            scale        = "linear"
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+locals {
+
+  helm_worker_cpu_usage = [
+    {
+      query = "avg:docker.cpu.user{$worker} by {pod_name}"
+      palette = "cool"
+    },
+    { query = "avg:docker.cpu.system{$worker} by {pod_name}"
+      palette = "warm"
+    }
+  ]
+
+  bosh_worker_cpu_usage = [
+    {
+      query = "avg:system.cpu.user{$environment,$worker} by {bosh_id}"
+      palette = "cool"
+    },
+    { query = "avg:system.cpu.system{$environment,$worker} by {bosh_id}"
+      palette = "warm"
+    }
+  ]
+
+  worker_cpu_usage_settings = var.deployment_tool == "bosh" ? local.bosh_worker_cpu_usage : local.helm_worker_cpu_usage
+
 }

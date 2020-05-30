@@ -19,6 +19,8 @@ module "ci_dashboard" {
 
   dashboard_title = "Concourse Dashboard - CI"
 
+  deployment_tool = "helm"
+
   concourse_datadog_prefix = "concourse.ci"
 
   concourse_metrics_attribute = {
@@ -38,6 +40,8 @@ module "hush_house_dashboard" {
   datadog_app_key = var.datadog_app_key
 
   dashboard_title = "Concourse Dashboard - Hush House"
+
+  deployment_tool = "helm"
 
   concourse_datadog_prefix = "concourse.ci"
 
