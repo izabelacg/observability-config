@@ -697,12 +697,12 @@ resource "datadog_dashboard" "concourse" {
 
             content {
               display_type = "line"
-              q = request.value["query"]
+              q            = request.value["query"]
 
               style {
-                line_type = "solid"
+                line_type  = "solid"
                 line_width = "normal"
-                palette = request.value["palette"]
+                palette    = request.value["palette"]
               }
             }
           }
@@ -725,20 +725,20 @@ locals {
 
   helm_worker_cpu_usage = [
     {
-      query = "avg:docker.cpu.user{$worker} by {pod_name}"
+      query   = "avg:docker.cpu.user{$worker} by {pod_name}"
       palette = "cool"
     },
-    { query = "avg:docker.cpu.system{$worker} by {pod_name}"
+    { query   = "avg:docker.cpu.system{$worker} by {pod_name}"
       palette = "warm"
     }
   ]
 
   bosh_worker_cpu_usage = [
     {
-      query = "avg:system.cpu.user{$environment,$worker} by {bosh_id}"
+      query   = "avg:system.cpu.user{$environment,$worker} by {bosh_id}"
       palette = "cool"
     },
-    { query = "avg:system.cpu.system{$environment,$worker} by {bosh_id}"
+    { query   = "avg:system.cpu.system{$environment,$worker} by {bosh_id}"
       palette = "warm"
     }
   ]
@@ -752,7 +752,7 @@ locals {
 #####################################################
 
 resource "datadog_dashboard" "concourse_systemstats" {
-  count = var.deployment_tool == "helm" ? 1 : 0
+  count        = var.deployment_tool == "helm" ? 1 : 0
   is_read_only = false
   layout_type  = "ordered"
   notify_list  = []

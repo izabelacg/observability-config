@@ -27,9 +27,9 @@ module "ci_dashboard" {
     environment = "ci"
   }
 
-  concourse_web_tag_key = "kube_deployment"
-  concourse_web_tag_value = "ci-web"
-  concourse_worker_tag_key = "kube_stateful_set"
+  concourse_web_tag_key      = "kube_deployment"
+  concourse_web_tag_value    = "ci-web"
+  concourse_worker_tag_key   = "kube_stateful_set"
   concourse_worker_tag_value = "ci-worker"
 }
 
@@ -49,8 +49,8 @@ module "hush_house_dashboard" {
     environment = "hush-house"
   }
 
-  concourse_web_tag_key = "kube_deployment"
-  concourse_web_tag_value = "hush-house-web"
-  concourse_worker_tag_key = "kube_stateful_set"
+  concourse_web_tag_key      = "kube_deployment"
+  concourse_web_tag_value    = "hush-house-web"
+  concourse_worker_tag_key   = "kube_stateful_set"
   concourse_worker_tag_value = "workers-worker"
 }
