@@ -24,7 +24,7 @@ module "ci_dashboard" {
   concourse_datadog_prefix = "concourse.ci"
 
   concourse_metrics_attribute = {
-    environment = "ci"
+    environment = "environment:ci"
   }
 
   concourse_web_tag_key      = "kube_deployment"
@@ -46,7 +46,7 @@ module "hush_house_dashboard" {
   concourse_datadog_prefix = "concourse.ci"
 
   concourse_metrics_attribute = {
-    environment = "hush-house"
+    environment = "environment:hush-house"
   }
 
   concourse_web_tag_key      = "kube_deployment"

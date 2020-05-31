@@ -9,9 +9,9 @@ resource "datadog_dashboard" "concourse" {
   title        = var.dashboard_title
 
   template_variable {
-    default = lookup(var.concourse_metrics_attribute, "environment")
+    default = local.environment_label_value
     name    = "environment"
-    prefix  = "environment"
+    prefix  = local.environment_label_key
   }
   template_variable {
     default = var.concourse_web_tag_value
@@ -745,6 +745,9 @@ locals {
 
   worker_cpu_usage_settings = var.deployment_tool == "bosh" ? local.bosh_worker_cpu_usage : local.helm_worker_cpu_usage
 
+  environment_label = split(":", lookup(var.concourse_metrics_attribute, "environment"))
+  environment_label_key = local.environment_label[0]
+  environment_label_value = local.environment_label[1]
 }
 
 #####################################################
@@ -759,9 +762,9 @@ resource "datadog_dashboard" "concourse_systemstats" {
   title        = "${var.dashboard_title} - System Stats"
 
   template_variable {
-    default = lookup(var.concourse_metrics_attribute, "environment")
+    default = local.environment_label_value
     name    = "environment"
-    prefix  = "environment"
+    prefix  = local.environment_label_key
   }
   template_variable {
     default = var.concourse_web_tag_value
