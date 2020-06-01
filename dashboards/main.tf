@@ -679,44 +679,6 @@ resource "datadog_dashboard" "concourse" {
       }
     }
   }
-
-  widget {
-
-    group_definition {
-      layout_type = "ordered"
-      title       = "System Stats"
-
-      widget {
-
-        timeseries_definition {
-          show_legend = false
-          title       = "Worker CPU Usage"
-
-          dynamic "request" {
-            for_each = local.worker_cpu_usage_settings
-
-            content {
-              display_type = "line"
-              q            = request.value["query"]
-
-              style {
-                line_type  = "solid"
-                line_width = "normal"
-                palette    = request.value["palette"]
-              }
-            }
-          }
-
-          yaxis {
-            include_zero = true
-            max          = "auto"
-            min          = "auto"
-            scale        = "linear"
-          }
-        }
-      }
-    }
-  }
 }
 
 
