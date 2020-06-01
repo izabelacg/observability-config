@@ -666,7 +666,7 @@ resource "datadog_dashboard" "concourse" {
 
             metadata {
               alias_name = "destroying"
-              expression = "avg.destroying_volumes_to_be_garbage_collected{$environment}"
+              expression = "avg:${var.concourse_datadog_prefix}.destroying_volumes_to_be_garbage_collected{$environment}"
             }
 
             style {
