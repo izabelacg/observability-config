@@ -54,3 +54,25 @@ module "hush_house_dashboard" {
   concourse_worker_tag_key   = "kube_stateful_set"
   concourse_worker_tag_value = "workers-worker"
 }
+
+module "ci_bosh_dashboard" {
+  source = "./dashboards"
+
+  datadog_api_key = var.datadog_api_key
+  datadog_app_key = var.datadog_app_key
+
+  dashboard_title = "Concourse Dashboard - CI - BOSH"
+
+  deployment_tool = "bosh"
+
+  concourse_datadog_prefix = "concourse.ci"
+
+  concourse_metrics_attribute = {
+    environment = "bosh-deployment:concourse-algorithm"
+  }
+
+  concourse_web_tag_key      = "bosh_job"
+  concourse_web_tag_value    = "web"
+  concourse_worker_tag_key   = "bosh_job"
+  concourse_worker_tag_value = "worker"
+}
