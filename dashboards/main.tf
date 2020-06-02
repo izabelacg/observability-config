@@ -45,9 +45,6 @@ resource "datadog_dashboard" "concourse" {
 
           yaxis {
             include_zero = false
-            max          = "100000"
-            min          = "1"
-            scale        = "log"
           }
         }
       }
@@ -448,6 +445,31 @@ resource "datadog_dashboard" "concourse" {
           request {
             display_type = "line"
             q            = "avg:${var.concourse_datadog_prefix}.goroutines{$environment} by {host}"
+
+            style {
+              line_type  = "solid"
+              line_width = "normal"
+              palette    = "dog_classic"
+            }
+          }
+
+          yaxis {
+            include_zero = true
+            max          = "auto"
+            min          = "auto"
+            scale        = "linear"
+          }
+        }
+      }
+      widget {
+
+        timeseries_definition {
+          show_legend = false
+          title       = "Checks Started"
+
+          request {
+            display_type = "line"
+            q            = "avg:${var.concourse_datadog_prefix}.checks_started{$environment} by {host}"
 
             style {
               line_type  = "solid"
