@@ -14,14 +14,14 @@ resource "datadog_dashboard" "concourse" {
     prefix  = local.environment_label_key
   }
   template_variable {
-    default = var.concourse_web_tag_value
+    default = local.web_label_value
     name    = "web"
-    prefix  = var.concourse_web_tag_key
+    prefix  = local.web_label_key
   }
   template_variable {
-    default = var.concourse_worker_tag_value
+    default = local.worker_label_value
     name    = "worker"
-    prefix  = var.concourse_worker_tag_key
+    prefix  = local.worker_label_key
   }
 
   widget {
@@ -709,9 +709,17 @@ locals {
 
   metrics_prefix = var.concourse_datadog_prefix == "" ? "" : "${var.concourse_datadog_prefix}."
 
-  environment_label       = split(":", lookup(var.concourse_metrics_attribute, "environment"))
+  environment_label       = split(":", lookup(var.filter_by, "concourse_instance"))
   environment_label_key   = local.environment_label[0]
   environment_label_value = local.environment_label[1]
+
+  web_label       = split(":", lookup(var.filter_by, "concourse_web"))
+  web_label_key   = local.web_label[0]
+  web_label_value = local.web_label[1]
+
+  worker_label       = split(":", lookup(var.filter_by, "concourse_worker"))
+  worker_label_key   = local.worker_label[0]
+  worker_label_value = local.worker_label[1]
 }
 
 

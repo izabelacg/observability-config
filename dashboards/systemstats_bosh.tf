@@ -15,14 +15,14 @@ resource "datadog_dashboard" "concourse_systemstats_bosh" {
     prefix  = local.environment_label_key
   }
   template_variable {
-    default = var.concourse_web_tag_value
+    default = local.web_label_value
     name    = "web"
-    prefix  = var.concourse_web_tag_key
+    prefix  = local.web_label_key
   }
   template_variable {
-    default = var.concourse_worker_tag_value
+    default = local.worker_label_value
     name    = "worker"
-    prefix  = var.concourse_worker_tag_key
+    prefix  = local.worker_label_key
   }
 
   widget {

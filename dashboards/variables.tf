@@ -9,14 +9,9 @@ variable "dashboard_title" {}
 
 variable "concourse_datadog_prefix" {}
 
-variable "concourse_metrics_attribute" {
+variable "filter_by" {
   type = map(string)
 }
-
-variable "concourse_web_tag_key" {}
-variable "concourse_web_tag_value" {}
-variable "concourse_worker_tag_key" {}
-variable "concourse_worker_tag_value" {}
 
 variable "deployment_tool" {
   type        = string

@@ -23,14 +23,11 @@ module "ci_dashboard" {
 
   concourse_datadog_prefix = "concourse.ci"
 
-  concourse_metrics_attribute = {
-    environment = "environment:ci"
+  filter_by = {
+    concourse_instance = "environment:ci"
+    concourse_web = "kube_deployment:ci-web"
+    concourse_worker = "kube_stateful_set:ci-worker"
   }
-
-  concourse_web_tag_key      = "kube_deployment"
-  concourse_web_tag_value    = "ci-web"
-  concourse_worker_tag_key   = "kube_stateful_set"
-  concourse_worker_tag_value = "ci-worker"
 }
 
 module "hush_house_dashboard" {
@@ -45,14 +42,11 @@ module "hush_house_dashboard" {
 
   concourse_datadog_prefix = "concourse.ci"
 
-  concourse_metrics_attribute = {
-    environment = "environment:hush-house"
+  filter_by = {
+    concourse_instance = "environment:hush-house"
+    concourse_web = "kube_deployment:hush-house-web"
+    concourse_worker = "kube_stateful_set:workers-worker"
   }
-
-  concourse_web_tag_key      = "kube_deployment"
-  concourse_web_tag_value    = "hush-house-web"
-  concourse_worker_tag_key   = "kube_stateful_set"
-  concourse_worker_tag_value = "workers-worker"
 }
 
 module "ci_bosh_dashboard" {
@@ -67,12 +61,9 @@ module "ci_bosh_dashboard" {
 
   concourse_datadog_prefix = "concourse.ci"
 
-  concourse_metrics_attribute = {
-    environment = "bosh-deployment:concourse-algorithm"
+  filter_by = {
+    concourse_instance = "bosh-deployment:concourse-algorithm"
+    concourse_web = "bosh_job:web"
+    concourse_worker = "bosh_job:worker"
   }
-
-  concourse_web_tag_key      = "bosh_job"
-  concourse_web_tag_value    = "web"
-  concourse_worker_tag_key   = "bosh_job"
-  concourse_worker_tag_value = "worker"
 }
