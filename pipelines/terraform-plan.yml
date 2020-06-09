@@ -1,0 +1,31 @@
+platform: linux
+image_resource:
+  type: registry-image
+  source: {repository: concourse/unit}
+
+inputs:
+  - name: greenpeace
+
+params:
+  TARGET:
+  DATADOG_API_KEY:
+  DATADOG_APP_KEY:
+
+run:
+  path: sh
+  args:
+  - -c
+  - |
+    cd greenpeace
+    terraform init
+    terraform plan -target="$TARGET" -detailed-exitcode -var datadog_api_key=$DATADOG_API_KEY -var datadog_app_key=$DATADOG_APP_KEY
+    exitcode=$?
+    if [ $exitcode -eq 0 ]; then
+      echo "Succeeded, diff is empty (no changes)"
+    elif [ $exitcode -eq 2 ]; then
+      echo "There is a diff, code must be updated"
+      false
+    else
+      echo "Errored"
+      false
+    fi
