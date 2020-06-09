@@ -2,10 +2,17 @@
 # VARIABLES
 #################################
 
+variable "datadog_api_url" {
+  type        = string
+  description = "Datadog API url."
+  default     = "https://api.datadoghq.com"
+}
+
 variable "datadog_api_key" {
   type        = string
   description = "Datadog API key."
 }
+
 variable "datadog_app_key" {
   type        = string
   description = "Datadog APP key."

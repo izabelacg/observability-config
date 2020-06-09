@@ -8,6 +8,7 @@ This module uses [Terraform Datadog provider](https://www.terraform.io/docs/prov
 
 In order to create dashboards with this module, one or more variables should be set.
 
+* `datadog_api_url`: *Optional.* Datadog API url. Default to the Datadog US api: https://api.datadoghq.com. _e.g._ https://api.datadoghq.eu 
 * `datadog_api_key`: *Required.* Datadog API key.
 * `datadog_app_key`: *Required.* Datadog APP key.
 * `dashboard_title`: *Required.* Title of the dashboards.
