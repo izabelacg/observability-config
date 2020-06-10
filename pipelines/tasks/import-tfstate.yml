@@ -35,4 +35,4 @@ run:
 
       terraform init
       terraform import $RESOURCE_ADDRESS $DASHBOARD_ID
-      cp *.tfstate tfstate
+      cp *.tfstate ../tfstate
