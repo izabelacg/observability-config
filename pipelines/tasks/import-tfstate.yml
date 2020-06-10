@@ -10,6 +10,7 @@ outputs:
 
 params:
   RESOURCE_ADDRESS:
+  RESOURCE_ADDRESS_SYSSTAS:
   DATADOG_API_KEY:
   DATADOG_APP_KEY:
   DASHBOARD_TITLE:
@@ -28,8 +29,8 @@ run:
 
       DASHBOARD_ID=$(jq -r --arg TITLE "$DASHBOARD_TITLE" '.dashboards[] | select(.title == $TITLE) | .id' all-dashboards.json)
 
-      DASHBOARD_SS_TITLE="$DASHBOARD_TITLE - System Stats"
-      DASHBOARD_SS_ID=$(jq -r --arg TITLE "$DASHBOARD_SS_TITLE" '.dashboards[] | select(.title == $TITLE) | .id' all-dashboards.json)
+      DASHBOARD_TITLE_SYSSTATS="$DASHBOARD_TITLE - System Stats"
+      DASHBOARD_ID_SYSSTATS=$(jq -r --arg TITLE "$DASHBOARD_TITLE_SYSSTATS" '.dashboards[] | select(.title == $TITLE) | .id' all-dashboards.json)
 
       # Workaround to use `terraform import` command with modules and dynamic value assignment
       cd greenpeace
@@ -40,5 +41,5 @@ run:
 
       terraform init
       terraform import $RESOURCE_ADDRESS $DASHBOARD_ID
-      terraform import $RESOURCE_ADDRESS $DASHBOARD_SS_ID
+      terraform import RESOURCE_ADDRESS_SYSSTAS DASHBOARD_ID_SYSSTATS
       cp *.tfstate ../tfstate
