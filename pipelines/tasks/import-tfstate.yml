@@ -34,7 +34,5 @@ run:
           dashboards/main.tf.original > dashboards/main.tf
 
       terraform init
-      terraform import -var datadog_api_key=$DATADOG_API_KEY \
-                       -var datadog_app_key=$DATADOG_APP_KEY \
-                       $RESOURCE_ADDRESS $DASHBOARD_ID
+      terraform import $RESOURCE_ADDRESS $DASHBOARD_ID
       cp *.tfstate tfstate
