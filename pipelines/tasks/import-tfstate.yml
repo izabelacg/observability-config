@@ -1,0 +1,40 @@
+platform: linux
+image_resource:
+  type: registry-image
+  source: {repository: concourse/unit}
+
+inputs:
+  - name: greenpeace
+outputs:
+  - name: tfstate
+
+params:
+  RESOURCE_ADDRESS:
+  DATADOG_API_KEY:
+  DATADOG_APP_KEY:
+  DASHBOARD_TITLE:
+
+run:
+  path: sh
+  args:
+    - -c
+    - |
+      curl -X GET https://api.datadoghq.com/api/v1/dashboard \
+      -H "Content-Type: application/json" \
+      -H "DD-API-KEY: ${DATADOG_API_KEY}" \
+      -H "DD-APPLICATION-KEY: ${DATADOG_APP_KEY}" \
+      -s -o all-dashboards.json
+
+      DASHBOARD_ID=$(jq -r --arg TITLE "$DASHBOARD_TITLE" '.dashboards[] | select(.title == $TITLE) | .id' all-dashboards.json)
+
+      cd greenpeace
+      mv dashboards/main.tf dashboards/main.tf.original
+      sed -e "s/var.datadog_api_key/\"$DATADOG_API_KEY\"/g" \
+          -e "s/var.datadog_app_key/\"$DATADOG_APP_KEY\"/g" \
+          dashboards/main.tf.original > dashboards/main.tf
+
+      terraform init
+      terraform import -var datadog_api_key=$DATADOG_API_KEY \
+                       -var datadog_app_key=$DATADOG_APP_KEY \
+                       $RESOURCE_ADDRESS $DASHBOARD_ID
+      cp *.tfstate tfstate
