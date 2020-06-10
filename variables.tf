@@ -2,5 +2,5 @@
 # VARIABLES
 #################################
 
-variable "datadog_api_key" {}
-variable "datadog_app_key" {}
+variable "datadog_provider_api_key" {}
+variable "datadog_provider_app_key" {}

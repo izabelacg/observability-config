@@ -5,8 +5,8 @@
 module "ci_dashboard" {
   source = "./dashboards"
 
-  datadog_api_key = var.datadog_api_key
-  datadog_app_key = var.datadog_app_key
+  datadog_api_key = var.datadog_provider_api_key
+  datadog_app_key = var.datadog_provider_app_key
 
   dashboard_title = "Concourse Dashboard - CI"
 
@@ -24,8 +24,8 @@ module "ci_dashboard" {
 module "hush_house_dashboard" {
   source = "./dashboards"
 
-  datadog_api_key = var.datadog_api_key
-  datadog_app_key = var.datadog_app_key
+  datadog_api_key = var.datadog_provider_api_key
+  datadog_app_key = var.datadog_provider_app_key
 
   dashboard_title = "Concourse Dashboard - Hush House"
 
@@ -43,8 +43,8 @@ module "hush_house_dashboard" {
 module "ci_bosh_dashboard" {
   source = "./dashboards"
 
-  datadog_api_key = var.datadog_api_key
-  datadog_app_key = var.datadog_app_key
+  datadog_api_key = var.datadog_provider_api_key
+  datadog_app_key = var.datadog_provider_app_key
 
   dashboard_title = "Concourse Dashboard - CI - BOSH"
 
