@@ -16,10 +16,18 @@ In order to create dashboards with this module, one or more variables should be 
 * `deployment_tool`: *Required.* Tool utilized to deploy Concourse (either `bosh` or `helm`).
 * `filter_by`: *Required.* This variable is a map of strings which is expected to be set with three keys: 
 
-    **concourse_instance** - tag used to identify your Concourse deployment. _e.g._ "environment:hush-house"
-    **concourse_web** - tag used to identify your Concourse web nodes. 
-    **concourse_worker** - tag used to identify your Concourse worker nodes. _P.S._ Refer to [examples/main.tf](./examples/main.tf) for an example on how to set this variable.
+    * `concourse_instance` - tag used to identify your Concourse deployment. _e.g._ "environment:hush-house"
+    * `concourse_web` - tag used to identify your Concourse web nodes.
+    * `concourse_worker` - tag used to identify your Concourse worker nodes. _P.S._ Refer to [examples/main.tf](./examples/main.tf) for an example on how to set this variable.
 
 ### Module Outputs
 
 This module has no output variables.
+
+### Usage
+
+Once the `dashboards` module is called from your Terraform root module as [our example](./examples/main.tf) illustrates, you can run the following commands to create the dashboards:
+
+```shell script
+terraform init
+terraform apply
