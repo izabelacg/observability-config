@@ -17,4 +17,4 @@ params:
   DASHBOARD_TITLE:
 
 run:
-  path: pipelines/tasks/scripts/import-tfstate
+  path: greenpeace/pipelines/tasks/scripts/import-tfstate

@@ -14,4 +14,4 @@ params:
   DATADOG_APP_KEY:
 
 run:
-  path: pipelines/tasks/scripts/terraform-plan
+  path: greenpeace/pipelines/tasks/scripts/terraform-plan
