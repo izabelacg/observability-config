@@ -4,7 +4,7 @@ module "ci_dashboard" {
   datadog_api_key = "your datadog api key"
   datadog_app_key = "your datadog app key"
 
-  dashboard_title = "Concourse Dashboard - CI"
+  dashboard_title = "Concourse - CI"
 
   deployment_tool = "helm"
 
@@ -23,7 +23,7 @@ module "hush_house_dashboard" {
   datadog_api_key = "your datadog api key"
   datadog_app_key = "your datadog app key"
 
-  dashboard_title = "Concourse Dashboard - Hush House"
+  dashboard_title = "Concourse - Hush House"
 
   deployment_tool = "helm"
 
@@ -42,7 +42,7 @@ module "ci_bosh_dashboard" {
   datadog_api_key = "your datadog api key"
   datadog_app_key = "your datadog app key"
 
-  dashboard_title = "Concourse Dashboard - CI - BOSH"
+  dashboard_title = "Concourse - CI - BOSH"
 
   deployment_tool = "bosh"
 

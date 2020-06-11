@@ -12,7 +12,7 @@ jobs:
           RESOURCE_ADDRESS_SYSSTAS: module.ci_dashboard.datadog_dashboard.concourse_systemstats
           DATADOG_API_KEY: ((datadog_api_key))
           DATADOG_APP_KEY: ((datadog_app_key))
-          DASHBOARD_TITLE: "Concourse Dashboard - CI"
+          DASHBOARD_TITLE: "Concourse - CI"
       - task: terraform-plan
         file: greenpeace/pipelines/tasks/terraform-plan.yml
         params:
@@ -33,7 +33,7 @@ jobs:
           RESOURCE_ADDRESS_SYSSTAS: module.ci_bosh_dashboard.datadog_dashboard.concourse_systemstats_bosh
           DATADOG_API_KEY: ((datadog_api_key))
           DATADOG_APP_KEY: ((datadog_app_key))
-          DASHBOARD_TITLE: "Concourse Dashboard - CI - BOSH"
+          DASHBOARD_TITLE: "Concourse - CI - BOSH"
       - task: terraform-plan
         file: greenpeace/pipelines/tasks/terraform-plan.yml
         params:
@@ -54,7 +54,7 @@ jobs:
           RESOURCE_ADDRESS_SYSSTAS: module.hush_house_dashboard.datadog_dashboard.concourse_systemstats
           DATADOG_API_KEY: ((datadog_api_key))
           DATADOG_APP_KEY: ((datadog_app_key))
-          DASHBOARD_TITLE: "Concourse Dashboard - Hush House"
+          DASHBOARD_TITLE: "Concourse - Hush House"
       - task: terraform-plan
         file: greenpeace/pipelines/tasks/terraform-plan.yml
         params:
