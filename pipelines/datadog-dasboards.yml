@@ -58,7 +58,7 @@ jobs:
       - task: terraform-plan
         file: greenpeace/pipelines/tasks/terraform-plan.yml
         params:
-          TARGET: module.ci_bosh_dashboard
+          TARGET: module.hush_house_dashboard
           DATADOG_API_KEY: ((datadog_api_key))
           DATADOG_APP_KEY: ((datadog_app_key))
 
