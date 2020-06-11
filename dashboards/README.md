@@ -22,7 +22,10 @@ In order to create dashboards with this module, one or more variables should be 
 
 ### Module Outputs
 
-This module has no output variables.
+This module has two output variables:
+
+* `url`: Url to access the dashboard for Concourse.
+* `system_stats_url`: Url to access the system statistics dashboard for Concourse.
 
 ### Usage
 
