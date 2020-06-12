@@ -15,4 +15,4 @@ params:
   DATADOG_APP_KEY:
 
 run:
-  path: ci/pipelines/tasks/scripts/terraform-plan
+  path: ci/tasks/scripts/terraform-plan

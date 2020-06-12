@@ -18,4 +18,4 @@ params:
   DASHBOARD_TITLE:
 
 run:
-  path: ci/pipelines/tasks/scripts/import-tfstate
+  path: ci/tasks/scripts/import-tfstate
