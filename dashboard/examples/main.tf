@@ -1,5 +1,5 @@
 module "ci_dashboard" {
-  source = "./dashboards"
+  source = "./dashboard"
 
   datadog_api_key = "your datadog api key"
   datadog_app_key = "your datadog app key"
@@ -18,7 +18,7 @@ module "ci_dashboard" {
 }
 
 module "hush_house_dashboard" {
-  source = "./dashboards"
+  source = "./dashboard"
 
   datadog_api_key = "your datadog api key"
   datadog_app_key = "your datadog app key"
@@ -37,7 +37,7 @@ module "hush_house_dashboard" {
 }
 
 module "ci_bosh_dashboard" {
-  source = "./dashboards"
+  source = "./dashboard"
 
   datadog_api_key = "your datadog api key"
   datadog_app_key = "your datadog app key"

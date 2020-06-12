@@ -29,7 +29,7 @@ This module has two output variables:
 
 ### Usage
 
-Once the `dashboards` module is called from your Terraform root module as [our example](./examples/main.tf) illustrates, you can run the following commands to create the dashboards:
+Once the `dashboard` module is called from your Terraform root module as [our example](./examples/main.tf) illustrates, you can run the following commands to create the dashboards:
 
 ```shell script
 terraform init

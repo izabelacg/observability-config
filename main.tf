@@ -3,7 +3,7 @@
 #################################
 
 module "ci_dashboard" {
-  source = "./dashboards"
+  source = "./dashboard"
 
   datadog_api_key = var.datadog_provider_api_key
   datadog_app_key = var.datadog_provider_app_key
@@ -22,7 +22,7 @@ module "ci_dashboard" {
 }
 
 module "hush_house_dashboard" {
-  source = "./dashboards"
+  source = "./dashboard"
 
   datadog_api_key = var.datadog_provider_api_key
   datadog_app_key = var.datadog_provider_app_key
@@ -41,7 +41,7 @@ module "hush_house_dashboard" {
 }
 
 module "ci_bosh_dashboard" {
-  source = "./dashboards"
+  source = "./dashboard"
 
   datadog_api_key = var.datadog_provider_api_key
   datadog_app_key = var.datadog_provider_app_key
