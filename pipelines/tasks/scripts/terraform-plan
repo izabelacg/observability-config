@@ -1,7 +1,7 @@
 #!/bin/bash
 
-cp tfstate/* greenpeace
-cd greenpeace
+cp tfstate/* greenpeace/terraform/production
+cd greenpeace/terraform/production
 terraform init
 terraform plan -target="$TARGET" -detailed-exitcode -var datadog_provider_api_key=$DATADOG_API_KEY -var datadog_provider_app_key=$DATADOG_APP_KEY
 exitcode=$?
