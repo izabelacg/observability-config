@@ -33,7 +33,6 @@ resource "datadog_dashboard" "concourse_systemstats_bosh" {
 
       widget {
 
-        //TODO not the same
         timeseries_definition {
           show_legend = false
           title       = "Web CPU Usage"
@@ -166,7 +165,6 @@ resource "datadog_dashboard" "concourse_systemstats_bosh" {
       }
       widget {
 
-        //TODO not the same
         heatmap_definition {
           title = "Worker Memory Usage"
 
@@ -236,7 +234,6 @@ resource "datadog_dashboard" "concourse_systemstats_bosh" {
       }
       widget {
 
-        //TODO not in helm
         timeseries_definition {
           show_legend = false
           title       = "DB CPU Usage"
@@ -260,7 +257,6 @@ resource "datadog_dashboard" "concourse_systemstats_bosh" {
       }
       widget {
 
-        //TODO not in helm
         timeseries_definition {
           show_legend = false
           title       = "DB Memory Usage"
@@ -299,7 +295,6 @@ resource "datadog_dashboard" "concourse_systemstats_bosh" {
       }
       widget {
 
-        //TODO not in helm
         timeseries_definition {
           show_legend = false
           title       = "DB Disk Usage"
