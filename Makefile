@@ -1,6 +1,8 @@
 DATADOG_DASHBOARD_HH_JSON="$(shell ls HushHouse*.json | head -1)"
 DATADOG_DASHBOARD_CI_JSON="$(shell ls Concourse*.json | head -1)"
 
+#TODO consolidate jq queries
+
 concourse-dashboard-hh:
 	jq '.resource.datadog_dashboard.concourse_hh = \
 	(.widget = .widgets | .template_variable = .template_variables | \
