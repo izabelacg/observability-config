@@ -2,7 +2,7 @@ jobs:
   - name: ci-dashboard-changes
     serial: true
     plan:
-      - get: once-a-week
+      - get: every-other-day
         trigger: true
       - get: greenpeace
       - task: import-tfstate
@@ -23,7 +23,7 @@ jobs:
   - name: ci-bosh-dashboard-changes
     serial: true
     plan:
-      - get: once-a-week
+      - get: every-other-day
         trigger: true
       - get: greenpeace
       - task: import-tfstate
@@ -44,7 +44,7 @@ jobs:
   - name: hush-house-dashboard-changes
     serial: true
     plan:
-      - get: once-a-week
+      - get: every-other-day
         trigger: true
       - get: greenpeace
       - task: import-tfstate
@@ -66,18 +66,14 @@ resources:
   - name: greenpeace
     type: git
     source:
-      uri: git@github.com:pivotal-izabela-gomes/observability-config.git
+      uri: git@github.com:concourse/greenpeace.git
       branch: master
       private_key: ((concourse_bot_private_key))
 
-  - name: once-a-week
+  - name: every-other-day
     type: time
     source:
-      interval: 30m
-      start: 9:00 PM
-      stop: 10:00 PM
-      location: America/Toronto
-      days: [Tuesday]
+      interval: 48h
 
 #  - name: greenpeace
 #    type: git
