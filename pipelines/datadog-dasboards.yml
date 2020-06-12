@@ -4,9 +4,10 @@ jobs:
     plan:
       - get: every-other-day
         trigger: true
+      - get: ci
       - get: greenpeace
       - task: import-tfstate
-        file: greenpeace/pipelines/tasks/import-tfstate.yml
+        file: ci/pipelines/tasks/import-tfstate.yml
         params:
           RESOURCE_ADDRESS: module.ci_dashboard.datadog_dashboard.concourse
           RESOURCE_ADDRESS_SYSSTAS: module.ci_dashboard.datadog_dashboard.concourse_systemstats
@@ -14,7 +15,7 @@ jobs:
           DATADOG_APP_KEY: ((datadog_app_key))
           DASHBOARD_TITLE: "Concourse - CI"
       - task: terraform-plan
-        file: greenpeace/pipelines/tasks/terraform-plan.yml
+        file: ci/pipelines/tasks/terraform-plan.yml
         params:
           TARGET: module.ci_dashboard
           DATADOG_API_KEY: ((datadog_api_key))
@@ -25,9 +26,10 @@ jobs:
     plan:
       - get: every-other-day
         trigger: true
+      - get: ci
       - get: greenpeace
       - task: import-tfstate
-        file: greenpeace/pipelines/tasks/import-tfstate.yml
+        file: ci/pipelines/tasks/import-tfstate.yml
         params:
           RESOURCE_ADDRESS: module.ci_bosh_dashboard.datadog_dashboard.concourse
           RESOURCE_ADDRESS_SYSSTAS: module.ci_bosh_dashboard.datadog_dashboard.concourse_systemstats_bosh
@@ -35,7 +37,7 @@ jobs:
           DATADOG_APP_KEY: ((datadog_app_key))
           DASHBOARD_TITLE: "Concourse - CI - BOSH"
       - task: terraform-plan
-        file: greenpeace/pipelines/tasks/terraform-plan.yml
+        file: ci/pipelines/tasks/terraform-plan.yml
         params:
           TARGET: module.ci_bosh_dashboard
           DATADOG_API_KEY: ((datadog_api_key))
@@ -46,9 +48,10 @@ jobs:
     plan:
       - get: every-other-day
         trigger: true
+      - get: ci
       - get: greenpeace
       - task: import-tfstate
-        file: greenpeace/pipelines/tasks/import-tfstate.yml
+        file: ci/pipelines/tasks/import-tfstate.yml
         params:
           RESOURCE_ADDRESS: module.hush_house_dashboard.datadog_dashboard.concourse
           RESOURCE_ADDRESS_SYSSTAS: module.hush_house_dashboard.datadog_dashboard.concourse_systemstats
@@ -56,7 +59,7 @@ jobs:
           DATADOG_APP_KEY: ((datadog_app_key))
           DASHBOARD_TITLE: "Concourse - Hush House"
       - task: terraform-plan
-        file: greenpeace/pipelines/tasks/terraform-plan.yml
+        file: ci/pipelines/tasks/terraform-plan.yml
         params:
           TARGET: module.hush_house_dashboard
           DATADOG_API_KEY: ((datadog_api_key))
@@ -67,6 +70,13 @@ resources:
     type: git
     source:
       uri: git@github.com:concourse/greenpeace.git
+      branch: master
+      private_key: ((concourse_bot_private_key))
+
+  - name: ci
+    type: git
+    source:
+      uri: git@github.com:pivotal-izabela-gomes/observability-config.git
       branch: master
       private_key: ((concourse_bot_private_key))
 

@@ -5,6 +5,7 @@ image_resource:
   source: {repository: concourse/unit}
 
 inputs:
+  - name: ci
   - name: greenpeace
   - name: tfstate
 
@@ -14,4 +15,4 @@ params:
   DATADOG_APP_KEY:
 
 run:
-  path: greenpeace/pipelines/tasks/scripts/terraform-plan
+  path: ci/pipelines/tasks/scripts/terraform-plan
